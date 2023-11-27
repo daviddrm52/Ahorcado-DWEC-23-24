@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Ubuntu&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: #242333;
+    color: #FFFFFF;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.contenedor-pelicula {
+    margin: 20px 0;
+}
+
+.contenedor {
+    margin-bottom: 30px;
+    perspective: 1000px;
+}
+
+.letra{
+    background-color: #444451;
+    height: 30px;
+    width: 30px;
+    margin: 3px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.letra.correcto {
+    background-color: #008000;
+}
+
+.letra.error {
+    background-color: #B4001D;
+}
+
+.letra:not(.ocupado):hover{
+    cursor: pointer;
+    transform: scale(1.20);
+}
+
+.leyenda .letra:not(.ocupado):hover{
+    cursor: default;
+    transform: scale(1);
+}
+
+.leyenda {
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: #777281;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leyenda li{
+    align-items: center;
+    margin: 0 10px;
+}
+
+.leyenda li small{
+    margin-left: 2px;
+}
+
+.fila {
+    display: flex;
+}
+
+.palabraSecreta{
+    background-color: #F0F0F0;
+    text-align: center;
+    font-size: 30px;
+    height: 40px;
+    width: 100%;
+    margin: 15px 0;
+    box-shadow: 0 3px 10px rgba(255,255,255,0.7);
+}
+
+p.texto {
+    margin: 5px 0;
+}
+
+p.texto span {
+    color: #B4001D;
+}
