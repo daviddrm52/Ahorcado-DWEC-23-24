@@ -5,30 +5,89 @@
     margin: 0;
 }
 
-body {
-    background-color: #242333;
+header {
+    background-color: #800080;
+    padding: 20px;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 100%;
+    background-color: #800080;
     color: #FFFFFF;
     align-items: center;
-    height: 100vh;
+    text-align: center;
+}
+
+footer a{
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+body {
+    background-color: pink;
     font-family: 'Ubuntu', sans-serif;
 }
 
-.contenedor-pelicula {
-    margin: 20px 0;
+main {
+    text-align: center;
+    padding: 10px;
 }
 
-.contenedor {
+#contenedor {
     margin-bottom: 30px;
     perspective: 1000px;
 }
 
+#iniciaPartida {
+    padding: 40px;
+}
+
+#contenedor-derrota {
+    padding: 40px;
+    display: none;
+}
+
+#contenedor-victoria {
+    padding: 40px;
+    display: none;
+}
+
+#iniciaPartida button{
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #800080;
+    color: #FFFFFF;
+    border: transparent;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.tiempo {
+    padding: 30px;
+    font-size: large;
+}
+
+.ayuda div {
+    padding: 10px;
+}
+
 .letra{
-    background-color: #444451;
-    height: 30px;
-    width: 30px;
+    background-color: #28282c;
+    height: 35px;
+    width: 35px;
     margin: 3px;
+    display: inline-block;
     text-align: center;
     font-size: 24px;
+    color: #FFFFFF;
 }
 
 .letra.correcto {
@@ -68,18 +127,14 @@ body {
     margin-left: 2px;
 }
 
-.fila {
-    display: flex;
-}
-
 .palabraSecreta{
-    background-color: #F0F0F0;
     text-align: center;
     font-size: 30px;
     height: 40px;
-    width: 100%;
-    margin: 15px 0;
-    box-shadow: 0 3px 10px rgba(255,255,255,0.7);
+    width: 400px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 p.texto {

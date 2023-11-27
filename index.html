@@ -8,15 +8,23 @@
 </head>
 <body>
     <header>
-        
+        <h1>El Ahorcado</h1>
     </header>
     <main>
         <h2>
-            Juego del ahorcado (en progreso)
+            Juego del ahorcado
         </h2>
-        <p class="texto">Seleccione una letra, le quedan <span id="total">0</span> intentos.</p>
-        <div class="contenedor">
-            <div class="palabraSecreta">sus</div>       
+        <div id="contenedor-derrota">
+            Has perdido, skill issue i guess.
+            <img src="./img/skill-issue.jpg" width="400px">
+        </div>
+        <div id="contenedor-victoria">
+            Has ganado, good one.
+            <img src="./img/draven_chad.png" width="400px">
+        </div>
+        <div id="contenedor">
+            <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos. <button id="temporal">Prueba menos</button></p>
+            <div class="palabraSecreta">_ _ _ _ _ _</div>       
             <div class="fila">
                 <div class="letra">A</div>
                 <div class="letra">B</div>
@@ -27,7 +35,6 @@
                 <div class="letra">G</div>
                 <div class="letra">H</div>
                 <div class="letra">I</div>
-    
             </div>
             <div class="fila">
                 <div class="letra">J</div>
@@ -41,7 +48,6 @@
                 <div class="letra">Q</div>
             </div>
             <div class="fila">
-    
                 <div class="letra">R</div>
                 <div class="letra">S</div>
                 <div class="letra">T</div>
@@ -52,12 +58,37 @@
                 <div class="letra">Y</div>
                 <div class="letra">Z</div>
             </div>
-            <div id="laHoraReal">00:00:00</div>
+        </div>
+        <div id="iniciaPartida">
+            <button id="botonIniciarPartida">Iniciar partida</button>
+        </div>
+        <div class="tiempo">
+            <p>Tiempo transcurrido: </p>
+            <div id="tiempoTranscurrido">00:00:00</div>
+        </div>
+        <div class="ayuda">
+            <div>
+                <p><b>¿Que tematica tiene este ahorcado?</b></p>
+                <p>Las palabras son nombres de aerolineas, pero no de aqui.</p>
+            </div>
+            <div>
+                <p><b>¿Como se juega?</b></p>
+                <p>Jugando.</p>
+            </div>
+            <div>
+                <p><b>¿Gano algo si lo completo?</b></p>
+                <p>Nada, asi es la vida.</p>
+            </div>
+            <div>
+                <p><b>¿Hay otras tematicas?</b></p>
+                <p>No, de momento.</p>
+            </div>
         </div>
     </main>
     <footer>
-
+        <h2>¿Quieres contactar conmigo?</h2>
+        <h5>Hecho por <a href="https://github.com/daviddrm52">@daviddrm52</a></h5>
     </footer>
-    <!-- <script src="./js/ahorcado.js"></script> -->
+    <script src="./js/ahorcado.js"></script>
 </body>
 </html>

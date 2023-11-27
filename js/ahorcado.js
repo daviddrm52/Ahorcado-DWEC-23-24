@@ -1,59 +1,69 @@
-// /* Variables */
-// const contenedor = document.querySelector('.contenedor');
-// const asientos = document.querySelectorAll('.fila .asiento:not(.ocupado)');
-// const contador = document.getElementById('contador');
-// const total = document.getElementById('total');
-// const peliculaSelect = document.getElementById('pelicula');
-// let precioTicket = +peliculaSelect.value;
+//Variables para el temporizador
 
-// //Llamada a rellenaIU para rellenar la pagina con los datos guardados
-// rellenaIU();
+let elCrono;
+let miFecha = new Date();
+let tiempoTranscurrido = document.getElementById("tiempoTranscurrido");
 
-// /* Eventos */
-// contenedor.addEventListener('click', (e) => {
-//     if(e.target.classList.contains('asiento') && !e.target.classList.contains('ocupado')){
-//         e.target.classList.toggle('seleccionado');
-//         actualizaSeleccionAsientos();
-//     };
-// });
+//Inicializa el tiempo
+miFecha.setHours(0,0,0,0);
 
-// peliculaSelect.addEventListener('change', (e) => {
-//     precioTicket = +e.target.value;
-//     localStorage.setItem('indexPeliculaSeleccionada', e.target.selectedIndex);
-//     localStorage.setItem('precioPeliculaSeleccionada', e.target.value);
-//     actualizaSeleccionAsientos();
-// })
+//Inicializa el texto de "tiempoTranscurrido";
+tiempoTranscurrido.innerHTML = "00:00:00";
 
-// /* Funciones */
-// //Actualiza la selección de asientos cuando seleccionamos uno, ademas de calcular el precio de la pelicula en funcion de los asientos seleccionados
-// function actualizaSeleccionAsientos(){
-//     const asientosSeleccionados = document.querySelectorAll('.fila .asiento.seleccionado');
-//     const asientosIndex = [...asientosSeleccionados].map((asiento) => [...asientos].indexOf(asiento));
-//     localStorage.setItem('asientosSeleccionados', JSON.stringify(asientosIndex));
-//     const contadorAsientosSeleccionados = asientosSeleccionados.length;
-//     contador.innerText = contadorAsientosSeleccionados;
-//     total.innerText = contadorAsientosSeleccionados * precioTicket;
-// };
+//Funcion que realiza el cronometro de tiempo transcurrido
+function cronometroInicial(){
+    let horas = miFecha.getHours();
+    let minutos = miFecha.getMinutes();
+    let segundos = miFecha.getSeconds();
+    segundos += 1;
+    if (segundos == 60){
+        segundos = 0;
+        minutos += 1;
+        miFecha.setMinutes(minutos);
+    };
+    if (minutos == 60){
+        minutos = 0;
+        horas += 1;
+        miFecha.setHours(horas);
+    };
+    miFecha.setSeconds(segundos);
+    if (horas < 10) { horas = "0" + horas;}
+    if (minutos < 10) { minutos = "0" + minutos;}
+    if (segundos < 10) { segundos = "0" + segundos;}
+    tiempoTranscurrido.innerHTML = horas + ":" + minutos + ":" + segundos;   
+};
 
-// //Llama al localStorage para recuperar la información guardada, y rellenar la pagina con los datos guardados
-// function rellenaIU(){
-//     const asientosSeleccionados = JSON.parse(localStorage.getItem('asientosSeleccionados'));
-//     if(asientosSeleccionados !== null && asientosSeleccionados.length > 0){
-//         asientos.forEach((asiento, index) => {
-//             if(asientosSeleccionados.indexOf(index) > -1){
-//                 asiento.classList.add('seleccionado');
-//             };
-//         });
-//     };
-//     const indexPeliculaSeleccionada = localStorage.getItem('indexPeliculaSeleccionada');
-//     if(indexPeliculaSeleccionada !== null){
-//         peliculaSelect.selectedIndex = indexPeliculaSeleccionada;
-//     };
-//     const precioPeliculaSeleccionada = localStorage.getItem('precioPeliculaSeleccionada');
-//     if(precioPeliculaSeleccionada !== null){
-//         precioTicket = +precioPeliculaSeleccionada;
-//     };
-// };
+//Variables para el ahorcado fase 1
+let palabras = ["Air Chiquin", "Air Lian", "Air Nevada"];
+let intentosRestantes = 7;
+let intentosHTML = document.getElementById("intentos");
+let botonPrueba = document.getElementById("temporal");
+let divIniciarPartida = document.getElementById("iniciaPartida");
+let botonIniciarPartida = document.getElementById("botonIniciarPartida");
+let contenedor = document.getElementById("contenedor");
+let contendorDerrota = document.getElementById("contenedor-derrota");
+let contendorVictoria = document.getElementById("contenedor-victoria");
+contenedor.style.display = "none";
+botonPrueba.style.display = "none";
 
-// //Llamada final a actualizaSeleccionAsientos, para que carguen los precios y los asientos en el ultimo parrafo
-// actualizaSeleccionAsientos();
+botonPrueba.addEventListener('click', (e) => {
+    intentosRestantes--;
+    console.log(intentosRestantes);
+    intentosHTML.innerHTML = intentosRestantes;
+    if(intentosRestantes === 0){
+        clearInterval(cronometroInicial);
+        botonPrueba.style.display = "none";
+        contenedor.style.display = "none";
+        contendorDerrota.style.display = "block";
+        // contendorVictoria.style.display = "block";
+    };
+});
+
+botonIniciarPartida.addEventListener('click', (e) => {
+    elCrono = setInterval(cronometroInicial, 1000);
+    botonIniciarPartida.style.display = "none";
+    divIniciarPartida.style.display = "none";
+    contenedor.style.display = "block";
+    botonPrueba.style.display = "block";
+
+});

@@ -1,2 +1,7 @@
 27-11-2023 ->
-    
+    El css esta avanzado, los botones de iniciar partida funciona, pero al llegar a 0 intentos no se para el tiempo, solucionar mañana
+    Ademas de dejar la pagina bonita visualmente.
+    Hay eastereggs cuando pierdes y eso.
+
+28-11-2023 ->
+    Awaiting progress...
