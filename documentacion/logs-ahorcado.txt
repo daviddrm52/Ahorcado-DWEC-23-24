@@ -4,4 +4,7 @@
     Hay eastereggs cuando pierdes y eso.
 
 28-11-2023 ->
-    Awaiting progress...
+    Falta poner el funcionamiento del ahorcado, el resto esta god.
+
+29-11-2023 ->
+    Awaiting progress

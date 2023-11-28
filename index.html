@@ -15,16 +15,16 @@
             Juego del ahorcado
         </h2>
         <div id="contenedor-derrota">
-            Has perdido, skill issue i guess.
-            <img src="./img/skill-issue.jpg" width="400px">
+            <!-- <p>Has perdido, skill issue i guess.</p> -->
+            <img src="./img/skill-issue.gif" width="300px">
         </div>
         <div id="contenedor-victoria">
             Has ganado, good one.
             <img src="./img/draven_chad.png" width="400px">
         </div>
-        <div id="contenedor">
+        <div class="contenedor" id="contenedor">
             <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos. <button id="temporal">Prueba menos</button></p>
-            <div class="palabraSecreta">_ _ _ _ _ _</div>       
+            <div class="palabraSecreta" id="palabraSecreta">_ _ _ _ _ _</div>       
             <div class="fila">
                 <div class="letra">A</div>
                 <div class="letra">B</div>
@@ -59,29 +59,42 @@
                 <div class="letra">Z</div>
             </div>
         </div>
-        <div id="iniciaPartida">
+        <div class="contenedor-inicio" id="contenedor-inicio">
             <button id="botonIniciarPartida">Iniciar partida</button>
         </div>
-        <div class="tiempo">
+        <div class="contenedor-tiempo" id="contenedor-tiempo">
             <p>Tiempo transcurrido: </p>
             <div id="tiempoTranscurrido">00:00:00</div>
         </div>
-        <div class="ayuda">
+        <div class="contenedor-reinicio" id="contenedor-reinicio">
+            <a href="./index.html"><button id="botonReiniciarPartida">Reiniciar Partida</button></a>
+
+        </div>
+        <div class="contenedor-ayuda" id="contenedor-ayuda">
+            <div>
+                <h3>Ayuda para el usuario.</h3>
+            </div>
             <div>
                 <p><b>¿Que tematica tiene este ahorcado?</b></p>
                 <p>Las palabras son nombres de aerolineas, pero no de aqui.</p>
             </div>
             <div>
                 <p><b>¿Como se juega?</b></p>
-                <p>Jugando.</p>
+                <p>Tienes que seleccionar la letra que creas que esta incluida en la palabra oculta.</p>
+                <p> - Si fallas, se pondrá en <span class="error-ayuda">rojo</span> y se restara un intento.</p>
+                <p> - Si aciertas, se pondrá en <span class="correcto-ayuda">verde</span> y podras seguir.</p>
             </div>
             <div>
                 <p><b>¿Gano algo si lo completo?</b></p>
-                <p>Nada, asi es la vida.</p>
+                <p>La autosatisfacción de que lo has hecho.</p>
             </div>
             <div>
                 <p><b>¿Hay otras tematicas?</b></p>
-                <p>No, de momento.</p>
+                <p>Por el momento, no.</p>
+            </div>
+            <div>
+                <p><b>¿Functiona el ahorcado?</b></p>
+                <p class="error-ayuda">Aún no, pero al menos se ve bonito. </p>
             </div>
         </div>
     </main>
