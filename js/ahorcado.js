@@ -1,9 +1,9 @@
 //Variables para el ahorcado fase 1
-let palabras = ["AirChiquin", "AirLian", "AirNevada", "ChiquitinAirlines"];
+let palabras = [/*"AirChiquin", */"AIRLIAN"/*, "AirNevada", "ChiquitinAirlines"*/];
 let intentosRestantes = 7;
 let palabraSecreta = palabras[Math.floor(Math.random()*palabras.length)];
 let intentosHTML = document.getElementById("intentos");
-let botonPrueba = document.getElementById("temporal"); //eliminar cuando funcione
+let solucionHTML = document.getElementById("solucion");
 let botonIniciarPartida = document.getElementById("botonIniciarPartida");
 
 //Variables de los contenedores (i know, it's a lot)
@@ -22,12 +22,12 @@ let tiempoTranscurrido = document.getElementById("tiempoTranscurrido");
 
 // Ocultando la palabra 
 let palabraSecretaHTML = document.getElementById("palabraSecreta");
-let palabraSeparada = palabraSecreta.toUpperCase().split("");
+let palabraSeparadaOculta = palabraSecreta.toUpperCase().split("");
 let palabraSeparadaCorrecta = palabraSecreta.split("");
-for(let i = 0; i < palabraSeparada.length; i++){
-    palabraSeparada.splice([i], 1, "_");
+for(let i = 0; i < palabraSeparadaOculta.length; i++){
+    palabraSeparadaOculta.splice([i], 1, "_");
 };
-let amogus = palabraSeparada.join(',').replace(/,/g, ' ').split();
+let amogus = palabraSeparadaOculta.join(',').replace(/,/g, ' ').split();
 palabraSecretaHTML.innerText = amogus;
 
 //Variables para el cronometro
@@ -60,8 +60,6 @@ function cronometroInicial(){
 //Ocultar por defecto el contenedor
 contenedor.style.display = "none";
 
-botonPrueba.style.display = "none";
-
 /* Eventos */
 botonIniciarPartida.addEventListener('click', (e) => {
     elCrono = setInterval(cronometroInicial, 1000);
@@ -71,34 +69,45 @@ botonIniciarPartida.addEventListener('click', (e) => {
     contenedorReinicio.style.display = "block";
     contenedorTiempo.style.display = "block";
     contenedor.style.display = "block";
-    botonPrueba.style.display = "inline-block";
 
-});
-
-botonPrueba.addEventListener('click', (e) => {
-    intentosRestantes--;
-    console.log(intentosRestantes);
-    intentosHTML.innerHTML = intentosRestantes;
-    if(intentosRestantes === 0){
-        clearInterval(elCrono);
-        botonPrueba.style.display = "none";
-        contenedor.style.display = "none";
-        contenedorDerrota.style.display = "block";
-        // contendorVictoria.style.display = "block";
-    };
 });
 
 contenedor.addEventListener('click', (e) => {
     if(e.target.classList.contains('letra') && !e.target.classList.contains('error') && !e.target.classList.contains('correcto')){
-        e.target.classList.toggle('correcto');
         let letraEscogida = e.target.innerHTML;
-        verificaLetra(letraEscogida);
+        if(palabraSeparadaCorrecta.includes(letraEscogida) || palabraSeparadaCorrecta.includes(letraEscogida.toLowerCase())){
+            e.target.classList.toggle('correcto');
+            modificarPalabra(letraEscogida);            
+        } else {
+            e.target.classList.toggle('error');
+            intentosRestantes--;
+            intentosHTML.innerHTML = intentosRestantes;
+        };
+        if(intentosRestantes === 0){
+            clearInterval(elCrono);
+            contenedor.style.display = "none";
+            contenedorDerrota.style.display = "block";
+            solucionHTML.innerHTML = palabraSecreta;
+        };
+
+        console.log(palabraSeparadaCorrecta === palabraSeparadaOculta);
+
+        if(palabraSeparadaCorrecta == palabraSeparadaOculta) {
+            clearInterval(elCrono);
+            contenedor.style.display = "none";
+            contenedorVictoria.style.display = "block";
+        }
     };
 });
 
-function verificaLetra(userInput){
-    // console.log(palabraSeparadaCorrecta);
-    // console.log(palabraSeparada);
-    console.log("Letra seleccionada: " + userInput);
-    
-};
+function modificarPalabra(userInput) {
+    let primeraPosicionLetra = palabraSeparadaCorrecta.indexOf(userInput);
+    console.log(palabraSeparadaOculta[primeraPosicionLetra] = userInput);
+    let ultimaPosicionLetra = palabraSeparadaCorrecta.lastIndexOf(userInput);
+    console.log(palabraSeparadaOculta[ultimaPosicionLetra] = userInput);
+    let reemplazo = palabraSeparadaOculta.join(',').replace(/,/g, ' ').split();
+    palabraSecretaHTML.innerText = reemplazo;
+
+    console.log(palabraSeparadaCorrecta);
+    console.log(palabraSeparadaOculta);
+}

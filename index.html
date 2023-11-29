@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./img/draven_chad.png" type="image/x-icon">
     <title>Juego del Ahorado - David Rueda Madrid</title>
 </head>
 <body>
@@ -16,14 +17,18 @@
         </h2>
         <div id="contenedor-derrota">
             <!-- <p>Has perdido, skill issue i guess.</p> -->
-            <img src="./img/skill-issue.gif" width="300px">
+            <!-- <img src="./img/skill-issue.gif" width="200px"> -->
+            <iframe width="300" src="https://www.youtube.com/embed/zd7c5tQCs1I?si=CO_W54d3a3dq4Nkl&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            <div>
+                <p>Has perdido, la palabra correcta era:</p>
+                <p id="solucion"></p>
+            </div>
         </div>
         <div id="contenedor-victoria">
             Has ganado, good one.
-            <img src="./img/draven_chad.png" width="400px">
+            <img src="./img/draven_chad.png" width="200px">
         </div>
         <div class="contenedor" id="contenedor">
-            <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos. <button id="temporal">Prueba menos</button></p>
+            <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos.</p>
             <div class="palabraSecreta" id="palabraSecreta">_ _ _ _ _ _</div>       
             <div class="fila">
                 <div class="letra">A</div>

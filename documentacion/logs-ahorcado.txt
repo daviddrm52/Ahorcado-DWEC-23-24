@@ -7,4 +7,4 @@
     Falta poner el funcionamiento del ahorcado, el resto esta god.
 
 29-11-2023 ->
-    Awaiting progress
+    Functiona, pero al completar la palabra, no cambia a la pantalla de victoria
