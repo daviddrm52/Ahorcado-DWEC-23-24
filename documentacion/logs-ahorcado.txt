@@ -8,3 +8,21 @@
 
 29-11-2023 ->
     Functiona, pero al completar la palabra, no cambia a la pantalla de victoria
+
+30-11-2023 ->
+    No avanzado debido a practica de indexeddb
+
+01-12-2023 ->
+    No avanzado debido a practica de indexeddb (lethal company)
+
+02-12-2023 ->
+    No avanzado debido a practica de indexeddb (lethal company)
+
+03-12-2023 ->
+    No avanzado debido a practica de indexeddb
+
+04-12-2023 ->
+    No avanzado debido a teoria de dwec (asincronia y json)
+
+05-12-2023 ->
+    Awaiting progress...
