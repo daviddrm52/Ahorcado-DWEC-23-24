@@ -25,4 +25,7 @@
     No avanzado debido a teoria de dwec (asincronia y json)
 
 05-12-2023 ->
+    Funciona excepto con algunas palabras, modificado bastante el css y el diseño.
+
+06-12-2023 ->
     Awaiting progress...
