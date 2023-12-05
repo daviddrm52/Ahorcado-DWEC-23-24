@@ -12,20 +12,23 @@
         <h1>El Ahorcado</h1>
     </header>
     <main>
-        <h2>
-            Juego del ahorcado
-        </h2>
+        <div class="contenedor-titulo">
+            <h2>
+                Juego del ahorcado
+            </h2>
+        </div>
         <div id="contenedor-derrota">
-            <!-- <p>Has perdido, skill issue i guess.</p> -->
-            <!-- <img src="./img/skill-issue.gif" width="200px"> -->
-            <iframe width="300" src="https://www.youtube.com/embed/zd7c5tQCs1I?si=CO_W54d3a3dq4Nkl&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            <div>
-                <p>Has perdido, la palabra correcta era:</p>
+            <!-- <iframe width="300" src="https://www.youtube.com/embed/zd7c5tQCs1I?si=CO_W54d3a3dq4Nkl&amp;start=22" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>            <div> -->
+                <h2 class="derrota">¡Has perdido!</h2>
+                <img src="./img/bonfire_lit.gif" alt="Man burning with fuel">
+                <p>Mala suerte, la palabra correcta era:</p>
                 <p id="solucion"></p>
             </div>
         </div>
         <div id="contenedor-victoria">
-            Has ganado, good one.
+            <h2 class="victoria">Has ganado!</h2>
             <img src="./img/draven_chad.png" width="200px">
+            <p>¡Bien hecho!</p>
         </div>
         <div class="contenedor" id="contenedor">
             <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos.</p>
@@ -63,6 +66,10 @@
                 <div class="letra">Y</div>
                 <div class="letra">Z</div>
             </div>
+            <div class="fila">
+                <div class="letra especial"> </div>
+            </div>
+            <p class="texto">Ha cometido <span id="erroresCometidos">0</span> errores.</p>
         </div>
         <div class="contenedor-inicio" id="contenedor-inicio">
             <button id="botonIniciarPartida">Iniciar partida</button>
@@ -70,6 +77,14 @@
         <div class="contenedor-tiempo" id="contenedor-tiempo">
             <p>Tiempo transcurrido: </p>
             <div id="tiempoTranscurrido">00:00:00</div>
+        </div>
+        <div class="contenedor-muestra">
+            <div>
+                <h3>Palabras disponibles</h3>
+                <ul id="ul-palabras"></ul>
+                <p><b>Total de palabras: <span id="total-palabras">0</span></b></p>
+                <button id="volverInicio">Volver al inicio</button>
+            </div>
         </div>
         <div class="contenedor-reinicio" id="contenedor-reinicio">
             <a href="./index.html"><button id="botonReiniciarPartida">Reiniciar Partida</button></a>
@@ -81,7 +96,7 @@
             </div>
             <div>
                 <p><b>¿Que tematica tiene este ahorcado?</b></p>
-                <p>Las palabras son nombres de aerolineas, pero no de aqui.</p>
+                <p>Aerolineas de Pais Chiquitin, si quieres saber cuales son, abajo hay una lista.</p>
             </div>
             <div>
                 <p><b>¿Como se juega?</b></p>
@@ -99,8 +114,12 @@
             </div>
             <div>
                 <p><b>¿Functiona el ahorcado?</b></p>
-                <p class="error-ayuda">Aún no, pero al menos se ve bonito. </p>
+                <p>Funciona bien <span class="error-ayuda">si no hay más de 2 letras repetidas</span>.</p>
             </div>
+        </div>
+        <div class="contenedor-palabras">
+            <p>¿Que palabras hay en el ahorcado?</p>
+            <button id="verPalabras">Ver palabras</button>
         </div>
     </main>
     <footer>
