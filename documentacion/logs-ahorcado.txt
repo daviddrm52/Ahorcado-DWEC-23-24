@@ -9,16 +9,7 @@
 29-11-2023 ->
     Functiona, pero al completar la palabra, no cambia a la pantalla de victoria
 
-30-11-2023 ->
-    No avanzado debido a practica de indexeddb
-
-01-12-2023 ->
-    No avanzado debido a practica de indexeddb (lethal company)
-
-02-12-2023 ->
-    No avanzado debido a practica de indexeddb (lethal company)
-
-03-12-2023 ->
+30-11-2023 > 03-12-2023 ->
     No avanzado debido a practica de indexeddb
 
 04-12-2023 ->
@@ -27,5 +18,10 @@
 05-12-2023 ->
     Funciona excepto con algunas palabras, modificado bastante el css y el diseño.
 
-06-12-2023 ->
-    Awaiting progress...
+06-12-2023 > 10-12-2023 ->
+    No avanzado debido a otras cosas que eran más importantes
+
+11-12-2023 ->
+    Fase 1 fully operational, well let's see how Fase 2 works.
+    Diseño cambiado para tener diseño de "AviaTalk.com".
+    

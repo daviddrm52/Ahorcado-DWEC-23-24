@@ -8,6 +8,7 @@ let palabraSecreta = palabras[Math.floor(Math.random()*palabras.length)];
 let intentosHTML = document.getElementById("intentos");
 let erroresHTML = document.getElementById("erroresCometidos");
 let solucionHTML = document.getElementById("solucion");
+let solucionVictoriaHTML = document.getElementById("solucion_victoria");
 let botonIniciarPartida = document.getElementById("botonIniciarPartida");
 let botonMostrarPalabras = document.getElementById("verPalabras");
 let botonVueltaInicio = document.getElementById("volverInicio");
@@ -47,6 +48,7 @@ contenedor.style.display = "none";
 
 //Evento que oculta y muestra lo necesario al iniciar la partida, ademas de iniciar el tiempo de partida
 botonIniciarPartida.addEventListener('click', (e) => {
+    console.log("Partida iniciada");
     elCrono = setInterval(cronometroInicial, 1000);
     botonIniciarPartida.style.display = "none";
     contenedorInicio.style.display = "none";
@@ -62,15 +64,18 @@ botonIniciarPartida.addEventListener('click', (e) => {
 contenedor.addEventListener('click', (e) => {
     if(e.target.classList.contains('letra') && !e.target.classList.contains('error') && !e.target.classList.contains('correcto')){
         let letraEscogida = e.target.innerHTML;
+        console.log("Letra escogida: "+letraEscogida);
         if(palabraSeparadaCorrecta.includes(letraEscogida)){
             e.target.classList.toggle('correcto');
-            modificarPalabra(letraEscogida);            
+            modificarPalabra(letraEscogida);
+            console.log("Letra correcta");     
         } else {
             e.target.classList.toggle('error');
             intentosRestantes--;
             erroresCometidos++;
             intentosHTML.innerHTML = intentosRestantes;
             erroresHTML.innerHTML = erroresCometidos;
+            console.log("Letra incorrecta");
         };
         if(intentosRestantes === 0){
             clearInterval(elCrono);
@@ -83,6 +88,8 @@ contenedor.addEventListener('click', (e) => {
             clearInterval(elCrono);
             contenedor.style.display = "none";
             contenedorVictoria.style.display = "block";
+            solucionVictoriaHTML.innerHTML = palabraSecreta;
+
         };
     };
 });
@@ -120,10 +127,11 @@ function mostrarPalabras() {
 //Funcion que modifica la palabra dependiendo de que letra ha sido introducida
 function modificarPalabra(userInput) {
     do {
-        let primeraPosicionLetra = palabraSeparadaCorrecta.indexOf(userInput);
-        palabraSeparadaOculta[primeraPosicionLetra] = userInput;
-        let ultimaPosicionLetra = palabraSeparadaCorrecta.lastIndexOf(userInput);
-        palabraSeparadaOculta[ultimaPosicionLetra] = userInput;
+        do {
+            let posicionLetra = palabraSeparadaCorrecta.findIndex(x => x == userInput);
+            palabraSeparadaOculta[posicionLetra] = userInput;
+            palabraSeparadaCorrecta[posicionLetra] = "_";
+        } while(palabraSeparadaCorrecta.includes(userInput));
     } while (!palabraSeparadaOculta.includes(userInput));
     let reemplazo = palabraSeparadaOculta.join(',').replace(/,/g, ' ').split();
     palabraSecretaHTML.innerText = reemplazo;
@@ -150,4 +158,5 @@ function cronometroInicial(){
     if (minutos < 10) { minutos = "0" + minutos;}
     if (segundos < 10) { segundos = "0" + segundos;}
     tiempoTranscurrido.innerHTML = horas + ":" + minutos + ":" + segundos;   
+    // console.log(horas+":"+minutos+":"+segundos);
 };

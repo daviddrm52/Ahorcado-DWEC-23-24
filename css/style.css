@@ -6,21 +6,17 @@
 }
 
 header {
-    background-color: #800080;
+    background-color: #B4001D;
     padding: 30px;
     align-items: center;
-    text-align: center;
     color: #FFFFFF;
 }
 
 footer {
-    /* position: fixed;
-    left: 0;
-    bottom: 0; */
     padding-top: 20px;
     padding-bottom: 20px;
     width: 100%;
-    background-color: #800080;
+    background-color: #B4001D;
     color: #FFFFFF;
     align-items: center;
     text-align: center;
@@ -58,7 +54,7 @@ main {
 .contenedor {
     background-color: rgba(241, 203, 210, 0.75);
     border-radius: 10px;
-    width: 500px;
+    width: 650px;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -109,8 +105,8 @@ main {
 .contenedor-inicio button{
     padding: 10px;
     border-radius: 5px;
-    background-color: #800080;
-    color: #FFFFFF;
+    background-color: #F7A500;
+    color: #000000;
     border: transparent;
     cursor: pointer;
     font-size: 20px;
@@ -130,8 +126,8 @@ main {
 .contenedor-reinicio button{
     padding: 10px;
     border-radius: 5px;
-    background-color: #800080;
-    color: #FFFFFF;
+    background-color: #F7A500;
+    color: #000000;
     border: transparent;
     cursor: pointer;
     font-size: 20px;
@@ -180,9 +176,10 @@ main {
 
 .contenedor-muestra button {
     padding: 10px;
+    margin: 10px;
     border-radius: 5px;
-    background-color: #800080;
-    color: #FFFFFF;
+    background-color: #F7A500;
+    color: #000000;
     border: transparent;
     cursor: pointer;
     font-size: 20px;
@@ -199,13 +196,14 @@ main {
 }
 
 .contenedor-palabras button{
-    padding: 5px;
+    padding: 10px;
+    margin: 10px;
     border-radius: 5px;
-    background-color: #800080;
-    color: #FFFFFF;
+    background-color: #F7A500;
+    color: #000000;
     border: transparent;
     cursor: pointer;
-    font-size: 15px;
+    font-size: 20px;
 }
 
 .contenedor-ayuda div {
@@ -249,7 +247,7 @@ main {
     text-align: center;
     font-size: 30px;
     height: 40px;
-    width: 400px;
+    width: 550px;
     margin: auto;
     margin-top: 10px;
     margin-bottom: 10px;

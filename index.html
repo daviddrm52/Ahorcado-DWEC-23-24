@@ -22,13 +22,14 @@
                 <h2 class="derrota">¡Has perdido!</h2>
                 <img src="./img/bonfire_lit.gif" alt="Man burning with fuel">
                 <p>Mala suerte, la palabra correcta era:</p>
-                <p id="solucion"></p>
+                <b><p id="solucion"></p></b>
             </div>
         </div>
         <div id="contenedor-victoria">
             <h2 class="victoria">Has ganado!</h2>
             <img src="./img/draven_chad.png" width="200px">
             <p>¡Bien hecho!</p>
+            <p>Has encontrado la palabra <span id="solucion_victoria"></span></p>
         </div>
         <div class="contenedor" id="contenedor">
             <p class="texto">Seleccione una letra, le quedan <span id="intentos">7</span> intentos.</p>
@@ -114,7 +115,7 @@
             </div>
             <div>
                 <p><b>¿Functiona el ahorcado?</b></p>
-                <p>Funciona bien <span class="error-ayuda">si no hay más de 2 letras repetidas</span>.</p>
+                <p>Funciona bien con algunas palabras, de momento.</p>
             </div>
         </div>
         <div class="contenedor-palabras">
