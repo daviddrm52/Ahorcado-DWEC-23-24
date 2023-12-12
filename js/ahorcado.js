@@ -4,6 +4,7 @@
 let palabras = ["CHIQUITIN AIRLINES", "CHIQUITIN REGIONAL", "CHIQUITIN EXPRESS", "CHIQUITIN AIRLINES CARGO", "AIR CHIQUIN", "AIR CHIQUIN CARGO", "AIR LIAN", "KAISA AIRLINES", "KAISA AIRLINES CARGO", "ARTIC AIRLINES", "AIR NEVADA", "CARGOWATCH", "AEROLINEAS CHIQUITIANAS", "YELLOW AIRLINES", "AIR CHIQUITINO", "GREENPLUS AIR", "ALOE AIR", "AEROSPACE INNOVATIONS", "LINEAS AEREAS DE AVENA", "ICATHIA AIR", "ACR AIRWAYS"];
 let intentosRestantes = 7;
 let erroresCometidos = 0;
+let tiempoTotal = 0;
 let palabraSecreta = palabras[Math.floor(Math.random()*palabras.length)];
 let intentosHTML = document.getElementById("intentos");
 let erroresHTML = document.getElementById("erroresCometidos");
@@ -23,9 +24,11 @@ let contenedorAyuda = document.getElementById("contenedor-ayuda");
 let contenedorReinicio = document.getElementById("contenedor-reinicio");
 let contenedorPalabras = document.querySelector(".contenedor-palabras");
 let contenedorMuestra = document.querySelector(".contenedor-muestra");
+let contenedorEstadisticas = document.querySelector(".contenedor-ultima-partida");
 
 //Variables en relación al contador
 let elCrono;
+let restadorIntentos;
 let miFecha = new Date();
 let tiempoTranscurrido = document.getElementById("tiempoTranscurrido");
 miFecha.setHours(0,0,0,0);
@@ -50,11 +53,13 @@ contenedor.style.display = "none";
 botonIniciarPartida.addEventListener('click', (e) => {
     console.log("Partida iniciada");
     elCrono = setInterval(cronometroInicial, 1000);
+    // restadorIntentos = setInterval(restaIntentos, 10000);
     botonIniciarPartida.style.display = "none";
     contenedorInicio.style.display = "none";
     contenedorAyuda.style.display = "none";
     contenedorMuestra.style.display = "none";
     contenedorPalabras.style.display = "none";
+    contenedorEstadisticas.style.display = "none";
     contenedorReinicio.style.display = "block";
     contenedorTiempo.style.display = "block";
     contenedor.style.display = "block";
@@ -79,17 +84,20 @@ contenedor.addEventListener('click', (e) => {
         };
         if(intentosRestantes === 0){
             clearInterval(elCrono);
+            // clearInterval(restadorIntentos);
             contenedor.style.display = "none";
             contenedorDerrota.style.display = "block";
             solucionHTML.innerHTML = palabraSecreta;
+            anadirEstadisticas();
         };
         // console.log(palabraSeparadaOculta.includes("_"));
         if(!palabraSeparadaOculta.includes("_")) {
             clearInterval(elCrono);
+            // clearInterval(restadorIntentos);
             contenedor.style.display = "none";
             contenedorVictoria.style.display = "block";
             solucionVictoriaHTML.innerHTML = palabraSecreta;
-
+            anadirEstadisticas();
         };
     };
 });
@@ -158,5 +166,29 @@ function cronometroInicial(){
     if (minutos < 10) { minutos = "0" + minutos;}
     if (segundos < 10) { segundos = "0" + segundos;}
     tiempoTranscurrido.innerHTML = horas + ":" + minutos + ":" + segundos;   
-    // console.log(horas+":"+minutos+":"+segundos);
+    tiempoTotal = horas + ":" + minutos + ":" + segundos;
 };
+
+// function restaIntentos() {
+//     intentosRestantes--;
+//     intentosHTML.innerHTML = intentosRestantes;
+// }
+
+function anadirEstadisticas(){
+    if(intentosRestantes === 0){
+        localStorage.setItem("resultado-partida", "Derrota");
+    } else {
+        localStorage.setItem("resultado-partida", "Victoria");
+    }
+    localStorage.setItem("palabra-secreta", palabraSecreta);
+    localStorage.setItem("errores-cometidos", erroresCometidos);
+    localStorage.setItem("tiempo-empleado", tiempoTotal);
+}
+
+let botonEstadisticas = document.getElementById("mostrarEstadisticas").addEventListener('click', (event) => {
+    document.getElementById("estadisticas").style.display = "block";
+    document.getElementById("resultadoPartidaEstadistica").innerHTML = localStorage.getItem("resultado-partida");
+    document.getElementById("palabraSecretaEstadistica").innerHTML = localStorage.getItem("palabra-secreta");
+    document.getElementById("erroresCometidosEstadistica").innerHTML = localStorage.getItem("errores-cometidos");
+    document.getElementById("tiempoEmpleadoEstadistica").innerHTML = localStorage.getItem("tiempo-empleado");
+});

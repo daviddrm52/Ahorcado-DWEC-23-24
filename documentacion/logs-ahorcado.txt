@@ -25,3 +25,5 @@
     Fase 1 fully operational, well let's see how Fase 2 works.
     Diseño cambiado para tener diseño de "AviaTalk.com".
     
+12-12-2023 ->
+    Fase 2 parte de estadisicas de ultima partida funciona.
