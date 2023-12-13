@@ -27,3 +27,6 @@
     
 12-12-2023 ->
     Fase 2 parte de estadisicas de ultima partida funciona.
+
+13-12-2023 ->
+    Documentación tecnica creada y finalizando temporizador, entrega mañana.

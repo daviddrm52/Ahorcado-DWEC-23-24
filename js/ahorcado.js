@@ -9,10 +9,9 @@ let palabraSecreta = palabras[Math.floor(Math.random()*palabras.length)];
 let intentosHTML = document.getElementById("intentos");
 let erroresHTML = document.getElementById("erroresCometidos");
 let solucionHTML = document.getElementById("solucion");
+// let restadorIntentosHTML = document.getElementById("restadorIntentos");
 let solucionVictoriaHTML = document.getElementById("solucion_victoria");
 let botonIniciarPartida = document.getElementById("botonIniciarPartida");
-let botonMostrarPalabras = document.getElementById("verPalabras");
-let botonVueltaInicio = document.getElementById("volverInicio");
 
 //Variables de los contenedores (i know, it's a lot)
 let contenedor = document.getElementById("contenedor");
@@ -28,7 +27,6 @@ let contenedorEstadisticas = document.querySelector(".contenedor-ultima-partida"
 
 //Variables en relación al contador
 let elCrono;
-let restadorIntentos;
 let miFecha = new Date();
 let tiempoTranscurrido = document.getElementById("tiempoTranscurrido");
 miFecha.setHours(0,0,0,0);
@@ -53,7 +51,7 @@ contenedor.style.display = "none";
 botonIniciarPartida.addEventListener('click', (e) => {
     console.log("Partida iniciada");
     elCrono = setInterval(cronometroInicial, 1000);
-    // restadorIntentos = setInterval(restaIntentos, 10000);
+    // restadorIntentos = setTimeout(restaIntentos, 10000);
     botonIniciarPartida.style.display = "none";
     contenedorInicio.style.display = "none";
     contenedorAyuda.style.display = "none";
@@ -70,11 +68,11 @@ contenedor.addEventListener('click', (e) => {
     if(e.target.classList.contains('letra') && !e.target.classList.contains('error') && !e.target.classList.contains('correcto')){
         let letraEscogida = e.target.innerHTML;
         console.log("Letra escogida: "+letraEscogida);
-        if(palabraSeparadaCorrecta.includes(letraEscogida)){
+        if(palabraSeparadaCorrecta.includes(letraEscogida)){ //En caso de ser correcta
             e.target.classList.toggle('correcto');
             modificarPalabra(letraEscogida);
             console.log("Letra correcta");     
-        } else {
+        } else { //En caso de ser incorrecta
             e.target.classList.toggle('error');
             intentosRestantes--;
             erroresCometidos++;
@@ -82,18 +80,17 @@ contenedor.addEventListener('click', (e) => {
             erroresHTML.innerHTML = erroresCometidos;
             console.log("Letra incorrecta");
         };
-        if(intentosRestantes === 0){
+        if(intentosRestantes === 0){ //Si nos quedamos sin intentos, nos aparecerá el contenedor de derrota
             clearInterval(elCrono);
-            // clearInterval(restadorIntentos);
+            // clearTimeout(restadorIntentos);
             contenedor.style.display = "none";
             contenedorDerrota.style.display = "block";
             solucionHTML.innerHTML = palabraSecreta;
             anadirEstadisticas();
         };
-        // console.log(palabraSeparadaOculta.includes("_"));
-        if(!palabraSeparadaOculta.includes("_")) {
+        if(!palabraSeparadaOculta.includes("_")) { //En caso de acertar todo, nos aparecerá el contenedor de victoria
             clearInterval(elCrono);
-            // clearInterval(restadorIntentos);
+            // clearTimeout(restadorIntentos);
             contenedor.style.display = "none";
             contenedorVictoria.style.display = "block";
             solucionVictoriaHTML.innerHTML = palabraSecreta;
@@ -102,20 +99,29 @@ contenedor.addEventListener('click', (e) => {
     };
 });
 
-//Evento para poder ver que palabras hay
-botonMostrarPalabras.addEventListener('click', (event) => {
+//Evento para poder ver que palabras hay (en el menu)
+let botonMostrarPalabras = document.getElementById("verPalabras").addEventListener('click', (event) => {
     contenedorAyuda.style.display = "none";
     contenedorPalabras.style.display = "none";
     contenedorInicio.style.display = "none";
     mostrarPalabras();
 });
 
-//Evento de vuelta al inicio
-botonVueltaInicio.addEventListener('click', (event) => {
+//Evento de vuelta al inicio desde el contenedor de palabras
+let botonVueltaInicio = document.getElementById("volverInicio").addEventListener('click', (event) => {
     contenedorAyuda.style.display = "block";
     contenedorPalabras.style.display = "block";
     contenedorInicio.style.display = "block";
     contenedorMuestra.style.display = "none";
+});
+
+//Evento en cuanto pulsamos para ver las estadisticas, nos mostrará la ultima partida jugada
+let botonEstadisticas = document.getElementById("mostrarEstadisticas").addEventListener('click', (event) => {
+    document.getElementById("estadisticas").style.display = "block";
+    document.getElementById("resultadoPartidaEstadistica").innerHTML = localStorage.getItem("resultado-partida");
+    document.getElementById("palabraSecretaEstadistica").innerHTML = localStorage.getItem("palabra-secreta");
+    document.getElementById("erroresCometidosEstadistica").innerHTML = localStorage.getItem("errores-cometidos");
+    document.getElementById("tiempoEmpleadoEstadistica").innerHTML = localStorage.getItem("tiempo-empleado");
 });
 
 /* Funciones */
@@ -169,11 +175,16 @@ function cronometroInicial(){
     tiempoTotal = horas + ":" + minutos + ":" + segundos;
 };
 
+//Funcion que quita un intento, pasados los 10 segundos
 // function restaIntentos() {
 //     intentosRestantes--;
+//     let intentosQuitados = 0;
 //     intentosHTML.innerHTML = intentosRestantes;
+//     intentosQuitados++;
+//     restadorIntentosHTML.innerHTML = "Se te han restado "+intentosQuitados+" intentos.";
 // }
 
+//Funcion que añade los datos de la partida a localStorage, y que posteriormente, se pueden ver en el menu del juego
 function anadirEstadisticas(){
     if(intentosRestantes === 0){
         localStorage.setItem("resultado-partida", "Derrota");
@@ -183,12 +194,4 @@ function anadirEstadisticas(){
     localStorage.setItem("palabra-secreta", palabraSecreta);
     localStorage.setItem("errores-cometidos", erroresCometidos);
     localStorage.setItem("tiempo-empleado", tiempoTotal);
-}
-
-let botonEstadisticas = document.getElementById("mostrarEstadisticas").addEventListener('click', (event) => {
-    document.getElementById("estadisticas").style.display = "block";
-    document.getElementById("resultadoPartidaEstadistica").innerHTML = localStorage.getItem("resultado-partida");
-    document.getElementById("palabraSecretaEstadistica").innerHTML = localStorage.getItem("palabra-secreta");
-    document.getElementById("erroresCometidosEstadistica").innerHTML = localStorage.getItem("errores-cometidos");
-    document.getElementById("tiempoEmpleadoEstadistica").innerHTML = localStorage.getItem("tiempo-empleado");
-});
+};
