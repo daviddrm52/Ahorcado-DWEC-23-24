@@ -30,3 +30,6 @@
 
 13-12-2023 ->
     Documentación tecnica creada y finalizando temporizador, entrega mañana.
+
+14-12-2023 ->
+    Finalizado, entregado.
